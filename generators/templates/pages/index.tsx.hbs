@@ -1,0 +1,15 @@
+import { NextPage } from 'next'
+
+import * as C from '~/components'
+import * as S from '~/styles/pages/{{kebabCase name}}'
+
+const {{pascalCase name}}: NextPage = () => {
+return (
+<S.Container>
+  <C.MetaTags title="{{pascalCase name}}" />
+  <S.Title>{{pascalCase name}} Page</S.Title>
+</S.Container>
+)
+}
+
+export default {{pascalCase name}}
