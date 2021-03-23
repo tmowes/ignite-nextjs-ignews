@@ -8,7 +8,7 @@ const SignInButton = (props: SignInButtonProps) => {
 
   return isLoggedIn ? (
     <S.Container type="button">
-      <S.GitHubIcon isLoggedIn />
+      <S.GitHubIcon isLoggedIn={isLoggedIn} />
       <S.Label>Julio Cesar Mowes</S.Label>
 
       <S.CloseIcon />
