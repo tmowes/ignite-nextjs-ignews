@@ -1,1 +1,3 @@
-export type SubscribeButtonProps = {}
+export type SubscribeButtonProps = {
+  priceId: string
+}

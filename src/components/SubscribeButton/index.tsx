@@ -1,6 +1,7 @@
 import * as S from './styles'
+import { SubscribeButtonProps } from './types'
 
-const SubscribeButton = () => {
+const SubscribeButton = ({ priceId }: SubscribeButtonProps) => {
   return (
     <S.Container type="button">
       <S.Label>Inscreva-se</S.Label>
