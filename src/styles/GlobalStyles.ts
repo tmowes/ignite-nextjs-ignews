@@ -81,13 +81,13 @@ ${({ theme: { colors } }) => css`
     border: 0;
     transition: 180ms ease-in-out;
     color: inherit;
-    color: ${colors.orange};
+    color: ${colors.white};
     :hover {
-      color: ${tint(0.16, colors.orange)};
+      /* color: ${tint(0.16, colors.white)}; */
       /* text-decoration: underline; */
     }
     :active {
-      color: ${shade(0.16, colors.orange)};
+      /* color: ${shade(0.16, colors.white)}; */
       /* text-decoration: underline; */
     }
   }
