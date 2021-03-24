@@ -27,19 +27,11 @@ export const Container = styled.button`
   `}
 `
 
-// eslint-disable-next-line prettier/prettier
-export const GitHubIcon = styled(AiOutlineGithub) <{ isLoggedIn?: boolean }>`
-  ${({ isLoggedIn, theme: { colors } }) => css`
-    width: 28px;
-    height: 28px;
-    margin-right: 1rem;
-    transition: 180ms ease-in-out;
-    color: ${colors.yellow5};
-    ${isLoggedIn &&
-    css`
-      color: ${colors.green};
-    `}
-  `}
+export const GitHubIcon = styled(AiOutlineGithub)`
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  transition: 180ms ease-in-out;
 `
 export const CloseIcon = styled(AiOutlineClose)`
   ${({ theme: { colors } }) => css`

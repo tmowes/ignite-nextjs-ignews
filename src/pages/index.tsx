@@ -2,29 +2,8 @@ import { GetStaticProps } from 'next'
 import * as C from '~/components'
 import { stripe } from '~/services'
 import * as S from '~/styles/pages'
+import { HomeProps } from '~/types/home'
 
-interface HomeProps {
-  product: {
-    priceId: string
-    amount: string
-  }
-}
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const price = await stripe.prices.retrieve('price_1IXyLHEdGIOVJoG3Uec0ms5D')
-
-//   const product = {
-//     priceId: price.id,
-//     amount: new Intl.NumberFormat('pt-BR', {
-//       style: 'currency',
-//       currency: 'BRL',
-//     }).format(price.unit_amount / 100),
-//   }
-
-//   return {
-//     props: { product },
-//   }
-// }
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1IXyLHEdGIOVJoG3Uec0ms5D')
 

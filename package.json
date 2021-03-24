@@ -12,7 +12,9 @@
     "new:page": "yarn plop --plopfile ./generators/ploppagefile.js"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^1.13.2",
     "axios": "^0.21.1",
+    "faunadb": "^4.1.2",
     "js-cookie": "^2.2.1",
     "next": "10.0.9",
     "next-auth": "^3.13.2",

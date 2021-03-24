@@ -1,28 +1,36 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { query as q } from 'faunadb'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
-const options = {
-  site: process.env.NEXTAUTH_URL,
-  callbacks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    signIn: async (user: any, session: any) => {
-      // eslint-disable-next-line no-param-reassign
-      session.id = user.id
-      return Promise.resolve(session)
-    },
-    redirect: async (_url: string, _baseUrl: string) => {
-      return Promise.resolve(`${process.env.NEXT_URL_LOGGED_URL}`)
-    },
-  },
+import { fauna } from '~/services'
+
+export default NextAuth({
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      scope: 'read:user',
     }),
   ],
-}
-
-export default (request: NextApiRequest, response: NextApiResponse) => {
-  NextAuth(request, response, options)
-}
+  callbacks: {
+    signIn: async (user, _account, _profile) => {
+      const { email } = user
+      try {
+        await fauna.query(
+          q.If(
+            q.Not(
+              q.Exists(
+                q.Match(q.Index('user_by_email'), q.Casefold(user.email)),
+              ),
+            ),
+            q.Create(q.Collection('users'), { data: { email } }),
+            q.Get(q.Match(q.Index('user_by_email'), q.Casefold(user.email))),
+          ),
+        )
+        return true
+      } catch {
+        return false
+      }
+    },
+  },
+})

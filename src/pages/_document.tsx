@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
             rel="stylesheet"
           />
-          <link rel="manifest" href="/manifest.json" />
+          {/* <link rel="manifest" href="/manifest.json" /> */}
           <link rel="apple-touch-icon" sizes="192x192" href="/favicon@3x.png" />
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         </Head>

@@ -1,21 +1,20 @@
+import { signIn, signOut, useSession } from 'next-auth/client'
+import { useTheme } from 'styled-components'
 import * as S from './styles'
-import { SignInButtonProps } from './types'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SignInButton = (props: SignInButtonProps) => {
-  // const {} = props
-  const isLoggedIn = true
+const SignInButton = () => {
+  const { colors } = useTheme()
+  const [session] = useSession()
 
-  return isLoggedIn ? (
-    <S.Container type="button">
-      <S.GitHubIcon isLoggedIn={isLoggedIn} />
-      <S.Label>Julio Cesar Mowes</S.Label>
-
+  return session?.user?.name ? (
+    <S.Container type="button" onClick={() => signOut()}>
+      <S.GitHubIcon color={colors.green} />
+      <S.Label>{session.user.name} </S.Label>
       <S.CloseIcon />
     </S.Container>
   ) : (
-    <S.Container type="button">
-      <S.GitHubIcon />
+    <S.Container type="button" onClick={() => signIn('github')}>
+      <S.GitHubIcon color={colors.yellow5} />
       <S.Label>Logar-se com o Github</S.Label>
     </S.Container>
   )
