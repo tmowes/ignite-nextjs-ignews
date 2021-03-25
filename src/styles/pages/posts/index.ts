@@ -1,16 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
-  ${({ theme: { colors } }) => css`
-    width: 100%;
-    height: 100%;
-    background-color: ${colors.background};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `}
-`
+export const Container = styled.div``
 
 export const Title = styled.h1`
   ${({ theme: { colors } }) => css`
@@ -24,19 +14,19 @@ export const Main = styled.main`
 `
 
 export const Post = styled.div`
+  max-width: 720px;
+  margin: 5rem 0 auto;
+`
+
+export const Link = styled.a`
   ${({ theme: { colors } }) => css`
-    max-width: 720px;
-    margin: 5rem 0 auto;
+    display: block;
     &:not(:first-child) {
       margin-top: 2rem;
       padding-top: 2rem;
       border-top: 1px solid ${colors.yellow5};
     }
   `}
-`
-
-export const Link = styled.a`
-  display: block;
 `
 
 export const CreatedAt = styled.time`

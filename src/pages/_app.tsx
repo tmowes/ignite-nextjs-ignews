@@ -7,14 +7,14 @@ import * as themes from '~/styles/themes'
 import * as C from '~/components'
 
 const App = ({ Component, pageProps }: AppProps) => (
-  <ThemeProvider theme={themes.dark}>
-    <NextAuthProvider session={pageProps.session}>
+  <NextAuthProvider session={pageProps.session}>
+    <ThemeProvider theme={themes.dark}>
       <GlobalStyle />
       <C.MetaTags />
       <C.Header />
       <Component {...pageProps} />
-    </NextAuthProvider>
-  </ThemeProvider>
+    </ThemeProvider>
+  </NextAuthProvider>
 )
 
 export default App

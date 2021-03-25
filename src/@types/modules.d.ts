@@ -9,5 +9,6 @@ declare namespace NodeJS {
     STRIPE_SUCCESS_URL: string
     STRIPE_CANCEL_URL: string
     PRISMIC_KEY: string
+    PRISMIC_URL: string
   }
 }

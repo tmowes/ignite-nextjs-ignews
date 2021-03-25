@@ -1,3 +1,4 @@
+export { default as ActiveLink } from './ActiveLink'
 export { default as SubscribeButton } from './SubscribeButton'
 export { default as SignInButton } from './SignInButton'
 export { default as Button } from './Button'

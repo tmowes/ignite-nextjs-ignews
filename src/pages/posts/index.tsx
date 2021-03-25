@@ -1,58 +1,65 @@
-/* eslint-disable no-irregular-whitespace */
-import { NextPage } from 'next'
+import { GetStaticProps } from 'next'
+import Prismic from '@prismicio/client'
+import { RichText } from 'prismic-dom'
 
+import Link from 'next/link'
 import * as C from '~/components'
+import { getPrismicClient } from '~/services'
 import * as S from '~/styles/pages/posts'
+import { PostsProps } from '~/types/posts'
 
-const Posts: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient()
+
+  const { results } = await prismic.query(
+    [Prismic.predicates.at('document.type', 'post')],
+    {
+      fetch: ['post.title', 'post.content'],
+      pageSize: 100,
+    },
+  )
+
+  const posts = results.map(post => {
+    return {
+      slug: post.uid,
+      title: RichText.asText(post.data.title),
+      excerpt:
+        post.data.content.find(content => content.type === 'paragraph').text ??
+        '',
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+        'pt-BR',
+        {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        },
+      ),
+    }
+  })
+
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+
+const Posts = (props: PostsProps) => {
+  const { posts } = props
   return (
     <S.Container>
       <C.MetaTags title="Posts" />
       <S.Main>
         <S.Post>
-          <S.Link>
-            <S.PostTitle>Refactoring de classes e typescript</S.PostTitle>
-            <S.CreatedAt>12 de março de 2021</S.CreatedAt>
-            <S.Content>
-              💻 Sobre o desafio
-              Nesse desafio, você deverá criar uma aplicação para treinar o que
-              aprendeu até agora no ReactJS Essa será uma aplicação já funcional
-              onde o seu principal objetivo é realizar dois processos de
-              migração: de Javascript para Typescript e de Class Components para
-              Function Components. A seguir veremos com mais detalhes o que e
-              como precisa ser feito 🚀
-            </S.Content>
-          </S.Link>
-        </S.Post>
-        <S.Post>
-          <S.Link>
-            <S.PostTitle>Refactoring de classes e typescript</S.PostTitle>
-            <S.CreatedAt>12 de março de 2021</S.CreatedAt>
-            <S.Content>
-              💻 Sobre o desafio
-              Nesse desafio, você deverá criar uma aplicação para treinar o que
-              aprendeu até agora no ReactJS Essa será uma aplicação já funcional
-              onde o seu principal objetivo é realizar dois processos de
-              migração: de Javascript para Typescript e de Class Components para
-              Function Components. A seguir veremos com mais detalhes o que e
-              como precisa ser feito 🚀
-            </S.Content>
-          </S.Link>
-        </S.Post>
-        <S.Post>
-          <S.Link>
-            <S.PostTitle>Refactoring de classes e typescript</S.PostTitle>
-            <S.CreatedAt>12 de março de 2021</S.CreatedAt>
-            <S.Content>
-              💻 Sobre o desafio
-              Nesse desafio, você deverá criar uma aplicação para treinar o que
-              aprendeu até agora no ReactJS Essa será uma aplicação já funcional
-              onde o seu principal objetivo é realizar dois processos de
-              migração: de Javascript para Typescript e de Class Components para
-              Function Components. A seguir veremos com mais detalhes o que e
-              como precisa ser feito 🚀
-            </S.Content>
-          </S.Link>
+          {posts.map(({ slug, title, updatedAt, excerpt }) => (
+            <Link key={slug} href={`/posts/${slug}`}>
+              <S.Link>
+                <S.PostTitle>{title}</S.PostTitle>
+                <S.CreatedAt>{updatedAt}</S.CreatedAt>
+                <S.Content>{excerpt}</S.Content>
+              </S.Link>
+            </Link>
+          ))}
         </S.Post>
       </S.Main>
     </S.Container>

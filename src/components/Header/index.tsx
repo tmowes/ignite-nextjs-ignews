@@ -7,8 +7,12 @@ const Header = () => {
       <S.Content>
         <S.Logo src="/images/logo.svg" />
         <S.Nav>
-          <S.Title isActive>Home</S.Title>
-          <S.Title>Posts</S.Title>
+          <C.ActiveLink href="/">
+            <S.Title>Home</S.Title>
+          </C.ActiveLink>
+          <C.ActiveLink href="/posts">
+            <S.Title>Posts</S.Title>
+          </C.ActiveLink>
         </S.Nav>
         <C.SignInButton />
       </S.Content>
