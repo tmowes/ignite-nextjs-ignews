@@ -4,15 +4,17 @@ import { stripe } from '~/services'
 import * as S from '~/styles/pages'
 import { HomeProps } from '~/types/home'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const price = await stripe.prices.retrieve('price_1IXyLHEdGIOVJoG3Uec0ms5D')
+
+  const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
 
   const product = {
     priceId: price.id,
-    amount: new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(price.unit_amount / 100),
+    amount: currencyFormatter.format(price.unit_amount / 100),
   }
 
   return {
