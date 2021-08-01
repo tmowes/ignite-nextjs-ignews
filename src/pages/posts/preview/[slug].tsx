@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const PostPreview = (props: PostPreviewProps) => {
+export default function PostPreview(props: PostPreviewProps) {
   const {
     post: { slug, title, content, updatedAt },
   } = props
@@ -77,5 +77,3 @@ const PostPreview = (props: PostPreviewProps) => {
     </S.Container>
   )
 }
-
-export default PostPreview

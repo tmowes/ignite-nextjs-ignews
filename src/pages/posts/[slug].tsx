@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
 }
 
-const Post = (props: PostProps) => {
+export default function Post(props: PostProps) {
   const {
     post: { slug, title, content, updatedAt },
   } = props
@@ -65,5 +65,3 @@ const Post = (props: PostProps) => {
     </S.Container>
   )
 }
-
-export default Post

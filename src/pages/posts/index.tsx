@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Posts = (props: PostsProps) => {
+export default function Posts(props: PostsProps) {
   const { posts } = props
   return (
     <S.Container>
@@ -65,5 +65,3 @@ const Posts = (props: PostsProps) => {
     </S.Container>
   )
 }
-
-export default Posts

@@ -1,9 +1,7 @@
-import { NextPage } from 'next'
-
 import * as C from '~/components'
 import * as S from '~/styles/pages/dashboard'
 
-const Dashboard: NextPage = () => {
+export default function Dashboard() {
   return (
     <S.Container>
       <C.MetaTags title="Dashboard" />
@@ -11,5 +9,3 @@ const Dashboard: NextPage = () => {
     </S.Container>
   )
 }
-
-export default Dashboard
