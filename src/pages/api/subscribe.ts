@@ -13,17 +13,18 @@ type User = {
 // eslint-disable-next-line consistent-return
 export default async (request: NextApiRequest, response: NextApiResponse) => {
   if (request.method === 'POST') {
-    const { user } = await getSession({ req: request })
+    // const { user } = await getSession({ req: request })
+    const session = await getSession({ req: request })
 
     const userFromDB = await fauna.query<User>(
-      q.Get(q.Match(q.Index('user_by_email'), q.Casefold(user.email))),
+      q.Get(q.Match(q.Index('user_by_email'), q.Casefold(session.user.email))),
     )
 
     let customerId = userFromDB.data.stripe_costumer_id
 
     if (!customerId) {
       const stripeCustomer = await stripe.customers.create({
-        email: user.email,
+        email: session.user.email,
       })
 
       await fauna.query(

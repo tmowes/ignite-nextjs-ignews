@@ -1,14 +1,21 @@
+/* eslint-disable prettier/prettier */
+
+type CustomEnvVar =
+  | 'GITHUB_CLIENT_ID'
+  | 'GITHUB_CLIENT_SECRET'
+  | 'FAUNADB_KEY'
+  | 'NEXT_PUBLIC_STRIPE_KEY'
+  | 'STRIPE_API_KEY'
+  | 'STRIPE_WEBHOOK_KEY'
+  | 'STRIPE_SUCCESS_URL'
+  | 'STRIPE_CANCEL_URL'
+  | 'PRISMIC_KEY'
+  | 'PRISMIC_URL'
+
+type ProcessEnvExtended = {
+  [key in CustomEnvVar]: string
+}
+
 declare namespace NodeJS {
-  export interface ProcessEnv {
-    GITHUB_CLIENT_ID: string
-    GITHUB_CLIENT_SECRET: string
-    FAUNADB_KEY: string
-    NEXT_PUBLIC_STRIPE_KEY: string
-    STRIPE_API_KEY: string
-    STRIPE_WEBHOOK_KEY: string
-    STRIPE_SUCCESS_URL: string
-    STRIPE_CANCEL_URL: string
-    PRISMIC_KEY: string
-    PRISMIC_URL: string
-  }
+  export interface ProcessEnv extends ProcessEnvExtended { }
 }

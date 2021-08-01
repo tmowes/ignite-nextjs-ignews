@@ -2,17 +2,18 @@ import { signIn, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { api, getStripeJs } from '~/services'
 import * as S from './styles'
-import { SubscribeButtonProps } from './types'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SubscribeButton = ({ priceId }: SubscribeButtonProps) => {
+const SubscribeButton = () => {
   const [session] = useSession()
   const { push } = useRouter()
 
   const handleSubscribe = async () => {
     if (!session) {
-      signIn('github')
+      await signIn('github')
+      return
     }
+
     if (session?.activeSubscription) {
       push('/posts')
       return
