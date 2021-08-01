@@ -1,5 +1,6 @@
 import { query as q } from 'faunadb'
-import { fauna, stripe } from '~/services'
+import { stripe } from '~/services/stripe'
+import { fauna } from '~/services/fauna'
 
 export const saveSubscription = async (
   subscriptionId: string,

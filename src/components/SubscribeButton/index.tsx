@@ -1,6 +1,7 @@
 import { signIn, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import { api, getStripeJs } from '~/services'
+import { api } from '~/services/api'
+import { getStripeJs } from '~/services/stripe-js'
 import * as S from './styles'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import * as C from '~/components'
-import { stripe } from '~/services'
+import { stripe } from '~/services/stripe'
 import * as S from '~/styles/pages'
 import { HomeProps } from '~/types/home'
 

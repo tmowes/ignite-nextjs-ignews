@@ -4,7 +4,7 @@ import { RichText } from 'prismic-dom'
 
 import Link from 'next/link'
 import * as C from '~/components'
-import { getPrismicClient } from '~/services'
+import { getPrismicClient } from '~/services/prismic'
 import * as S from '~/styles/pages/posts'
 import { PostsProps } from '~/types/posts'
 

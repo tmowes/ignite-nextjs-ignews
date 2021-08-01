@@ -1,4 +1,5 @@
-import * as C from '~/components'
+import ActiveLink from '../ActiveLink'
+import SignInButton from '../SignInButton'
 import * as S from './styles'
 
 const Header = () => {
@@ -7,14 +8,14 @@ const Header = () => {
       <S.Content>
         <S.Logo src="/images/logo.svg" />
         <S.Nav>
-          <C.ActiveLink href="/">
+          <ActiveLink href="/">
             <S.Title>Home</S.Title>
-          </C.ActiveLink>
-          <C.ActiveLink href="/posts">
+          </ActiveLink>
+          <ActiveLink href="/posts">
             <S.Title>Posts</S.Title>
-          </C.ActiveLink>
+          </ActiveLink>
         </S.Nav>
-        <C.SignInButton />
+        <SignInButton />
       </S.Content>
     </S.Container>
   )

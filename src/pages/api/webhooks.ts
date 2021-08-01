@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { Readable } from 'stream'
 import Stripe from 'stripe'
-import { stripe } from '~/services'
+import { stripe } from '~/services/stripe'
 import { saveSubscription } from './_lib/manageSubscription'
 
 const buffer = async (readable: Readable) => {

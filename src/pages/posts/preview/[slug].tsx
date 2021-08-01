@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/client'
 import { RichText } from 'prismic-dom'
 
 import * as C from '~/components'
-import { getPrismicClient } from '~/services'
+import { getPrismicClient } from '~/services/prismic'
 import * as S from '~/styles/pages/post'
 import { PostPreviewProps } from '~/types/posts'
 
